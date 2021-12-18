@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    @*<button type="button" id="button1">Load Partial View</button>*@
+    <div class="col-md-4">
+        <h2>Load Partial View</h2>
+        <p>
+           Select Value from dropdown and load partial view using javascript
+            <select name="cars" id="ddlCountry" onchange="getSelectedCountry()">
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="India">India</option>
+            </select>
+        </p>
+        <p></p>
+    </div>
+    <div class="col-md-4"  id="first">
+        <h2>Get more libraries</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>
+@section Scripts{
+    <script language="javascript">
+
+        $(function () {
+            allCountry();
+        //    $('#partial').on('change', '.updateevent', function (el) {
+        //        $.ajax({
+        //            url: window.location.origin + "/Configure/UpdateViewData",
+        //            type: "post",
+        //            data: $("#partialform").serialize(),
+        //            success: function (result) {
+        //                $("#partial").html(result);
+        //            }
+        //        });
+        //    });
+        });
+
+        function allCountry() {
+            $("#first").load("/Home/GetPartial");
+        }
+        function getSelectedCountry() {
+            let selectedCountry = $("#ddlCountry").val();
+            $("#first").load("/Home/GetSelectedPartial?selectedCountry=" + selectedCountry);
+        }
+    </script>
+}
